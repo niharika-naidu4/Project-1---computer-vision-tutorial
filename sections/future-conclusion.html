@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Future Directions & Conclusion — Computer Vision for Assistive Object-Finding tutorial.">
-    <title>Future Directions & Conclusion — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Future Directions & Conclusion - Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Future Directions & Conclusion - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -62,7 +62,7 @@
 
       <h2>3. Long-Term Personalization</h2>
       <p>
-        Users should not need to re-enroll items every session. Embedding persistence and model adaptation could allow systems to remember the user's specific keys or glasses. Semi-supervised learning or user feedback loops could enable this — though care must be taken to avoid overfitting or data bloat on-device.
+        Users should not need to re-enroll items every session. Embedding persistence and model adaptation could allow systems to remember the user's specific keys or glasses. Semi-supervised learning or user feedback loops could enable this - though care must be taken to avoid overfitting or data bloat on-device.
       </p>
 
       <h2>4. Ethical Design & Privacy Defaults</h2>
@@ -72,12 +72,12 @@
 
       <h2>5. Evaluation at Scale</h2>
       <p>
-        Many systems are tested in small lab environments with a few users. Moving toward community datasets, in-the-wild deployments, and large-scale trials will be key to pushing the field forward. Benchmarks must also reflect real tasks — not just bounding box accuracy.
+        Many systems are tested in small lab environments with a few users. Moving toward community datasets, in-the-wild deployments, and large-scale trials will be key to pushing the field forward. Benchmarks must also reflect real tasks - not just bounding box accuracy.
       </p>
 
       <h2>Conclusion</h2>
       <p>
-        Assistive object-finding sits at the intersection of technical innovation and human-centered design. This tutorial has reviewed classical and modern detection methods, mobile deployment strategies, evaluation practices, and UX considerations — all grounded in recent research from <a href="annotated-bibliography.html#ref-1" target="_blank">[1]</a> to <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a>.
+        Assistive object-finding sits at the intersection of technical innovation and human-centered design. This tutorial has reviewed classical and modern detection methods, mobile deployment strategies, evaluation practices, and UX considerations - all grounded in recent research from <a href="annotated-bibliography.html#ref-1" target="_blank">[1]</a> to <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a>.
       </p>
 
       <p>
@@ -85,7 +85,7 @@
       </p>
 
       <p style="margin-top: 2rem; font-size: 0.95rem; color: #64748b;">
-        End of Tutorial — return to <a href="../index.html">Home</a> or try the <a href="quiz.html">Quiz</a>.
+        End of Tutorial - return to <a href="../index.html">Home</a> or try the <a href="quiz.html">Quiz</a>.
       </p>
 
       <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
@@ -95,27 +95,18 @@
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });

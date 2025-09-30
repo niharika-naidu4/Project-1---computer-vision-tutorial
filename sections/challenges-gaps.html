@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Failure Cases & Open Challenges — Computer Vision for Assistive Object-Finding tutorial.">
-    <title>Failure Cases & Open Challenges — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Failure Cases & Open Challenges - Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Failure Cases & Open Challenges - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -71,7 +71,7 @@
       </figure>
 
       <p>
-        A major challenge in assistive CV is distinguishing between objects with near-identical shape or color — like multiple pill bottles, sets of keys, or remote controls. Open-vocabulary models may misclassify or confidently highlight the wrong item if fine-grained differentiation is lacking.
+        A major challenge in assistive CV is distinguishing between objects with near-identical shape or color - like multiple pill bottles, sets of keys, or remote controls. Open-vocabulary models may misclassify or confidently highlight the wrong item if fine-grained differentiation is lacking.
       </p>
 
       <p>
@@ -80,11 +80,11 @@
 
       <h2>Partial Occlusion & Item Pose</h2>
       <p>
-        Many objects appear in unpredictable poses — glasses may be folded, keys may be upside down, or partially obscured under papers. Detection models often rely on features that disappear under occlusion, resulting in false negatives.
+        Many objects appear in unpredictable poses - glasses may be folded, keys may be upside down, or partially obscured under papers. Detection models often rely on features that disappear under occlusion, resulting in false negatives.
       </p>
 
       <p>
-        <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a> attempts to address this by using 3D voxel features, allowing partial geometry to be matched. However, this requires a depth sensor or stereo camera — not always available on phones.
+        <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a> attempts to address this by using 3D voxel features, allowing partial geometry to be matched. However, this requires a depth sensor or stereo camera - not always available on phones.
       </p>
 
       <h2>Personalization and Adaptation</h2>
@@ -103,12 +103,12 @@
       </p>
 
       <p>
-        However, compression can introduce accuracy loss — a tradeoff discussed in both <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a> and <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>. Balancing runtime efficiency and detection quality is still an open challenge.
+        However, compression can introduce accuracy loss - a tradeoff discussed in both <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a> and <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>. Balancing runtime efficiency and detection quality is still an open challenge.
       </p>
 
       <h2>Summary</h2>
       <p>
-        These challenges highlight the complexity of building robust, user-friendly assistive CV systems. Each limitation offers opportunities for improvement — whether through better model architectures, user feedback loops, hybrid sensor fusion, or task-aware UX design.
+        These challenges highlight the complexity of building robust, user-friendly assistive CV systems. Each limitation offers opportunities for improvement - whether through better model architectures, user feedback loops, hybrid sensor fusion, or task-aware UX design.
       </p>
 
       <p>
@@ -122,27 +122,18 @@
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });

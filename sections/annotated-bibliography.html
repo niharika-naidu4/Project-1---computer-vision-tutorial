@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Annotated Bibliography — Assistive Object-Finding tutorial.">
-    <title>Annotated Bibliography — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Annotated Bibliography - Assistive Object-Finding tutorial.">
+    <title>Annotated Bibliography - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -53,32 +53,53 @@
           <li id="ref-1">
             <p><strong>[1]</strong> Yao, M., Zhou, L., &amp; Hu, X. (2025). <em>A Review of Vision-Based Assistive Systems for Visually Impaired People</em>. <em>arXiv:2505.14298</em>. <a href="https://arxiv.org/abs/2505.14298" target="_blank">Link</a></p>
             <p><strong>Synopsis:</strong> Provides a survey of assistive vision systems, including navigation, recognition, and object finding. Identifies challenges in usability and privacy.</p>
-            <p><strong>Reliability:</strong> 4/5 — Peer-reviewed preprint, credible survey work.</p>
+            <p><strong>Reliability:</strong> 4/5 - Peer-reviewed preprint, credible survey work.</p>
           </li>
           <li id="ref-2">
             <p><strong>[2]</strong> Zhang, H., Wang, Y., Chen, Z., &amp; Li, Y. (2024). <em>ObjectFinder: An Open-Vocabulary Assistive System for Interactive Object Search by Blind People</em>. <em>arXiv:2412.03118</em>. <a href="https://arxiv.org/abs/2412.03118" target="_blank">Link</a></p>
             <p><strong>Synopsis:</strong> Proposes an open-vocabulary model enabling natural language queries for object-finding, tested with blind users.</p>
-            <p><strong>Reliability:</strong> 5/5 — Modern system with real user study, directly relevant.</p>
+            <p><strong>Reliability:</strong> 5/5 - Modern system with real user study, directly relevant.</p>
           </li>
           <li id="ref-3">
             <p><strong>[3]</strong> Xu, R., Chen, M., &amp; Zhao, Q. (2025). <em>OpenGuide: Assistive Object Retrieval in Indoor Spaces</em>. <em>arXiv:2509.02425</em>. <a href="https://arxiv.org/abs/2509.02425" target="_blank">Link</a></p>
             <p><strong>Synopsis:</strong> Combines object detection with navigation planning for indoor assistive retrieval tasks.</p>
-            <p><strong>Reliability:</strong> 4/5 — Innovative but preprint, awaiting formal review.</p>
+            <p><strong>Reliability:</strong> 4/5 - Innovative but preprint, awaiting formal review.</p>
           </li>
           <li id="ref-4">
             <p><strong>[4]</strong> Thomas Heitzinger and Martin Kampel. 2023. <em>A Fast Unified System for 3D Object Detection and Tracking (FUS3D)</em>. In <em>Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV 2023)</em>. <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Heitzinger_A_Fast_Unified_System_for_3D_Object_Detection_and_Tracking_ICCV_2023_paper.html" target="_blank">Link</a></p>
             <p><strong>Synopsis:</strong> Presents FUS3D, a real-time 3D object detection and tracking system optimized for edge devices. Relevant to mobile assistive applications.</p>
-            <p><strong>Reliability:</strong> 5/5 — Peer-reviewed and published at ICCV 2023.</p>
+            <p><strong>Reliability:</strong> 5/5 - Peer-reviewed and published at ICCV 2023.</p>
           </li>
           <li id="ref-5">
             <p><strong>[5]</strong> Zimeng Fang, Chao Liang, Xue Zhou, Shuyuan Zhu, and Xi Li. 2024. <em>Associate Everything Detected: Facilitating Tracking-by-Detection to the Unknown (AED)</em>. arXiv preprint arXiv:2409.09293. <a href="https://arxiv.org/abs/2409.09293" target="_blank">Link</a></p>
             <p><strong>Synopsis:</strong> Introduces AED, a system for open-vocabulary object tracking. Useful for memory-support applications that need to find arbitrary personal items.</p>
-            <p><strong>Reliability:</strong> 4/5 — Modern arXiv preprint from a respected research group.</p>
+            <p><strong>Reliability:</strong> 4/5 - Modern arXiv preprint from a respected research group.</p>
           </li>
         </ol>
+
+        <div style="display: flex; justify-content: center; margin-top: 3rem;">
+          <a href="../index.html" class="btn" style="text-decoration: none;">← Return to Home</a>
+        </div>
       </article>
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
+
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
+          }
+        });
+      });
+    </script>
   </body>
   </html>
 

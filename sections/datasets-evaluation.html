@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Datasets & Evaluation — Computer Vision for Assistive Object-Finding tutorial.">
-    <title>Datasets & Evaluation — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Datasets & Evaluation - Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Datasets & Evaluation - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -47,7 +47,7 @@
       </section>
 
       <p>
-        One of the most important aspects of developing assistive object-finding systems is the ability to evaluate them rigorously — both in terms of model performance and real-world usability. This requires access to representative datasets, robust metrics, and user-centered testing protocols.
+        One of the most important aspects of developing assistive object-finding systems is the ability to evaluate them rigorously - both in terms of model performance and real-world usability. This requires access to representative datasets, robust metrics, and user-centered testing protocols.
       </p>
 
       <h2>Evaluation Metrics</h2>
@@ -64,7 +64,7 @@
       </ul>
 
       <p>
-        For example, in <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, the authors used both detection accuracy and <em>task success rate</em> from user trials to evaluate their system. They found that while mAP was stable across scenes, user performance dropped significantly in cluttered or dark environments — something that traditional metrics don't fully capture.
+        For example, in <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, the authors used both detection accuracy and <em>task success rate</em> from user trials to evaluate their system. They found that while mAP was stable across scenes, user performance dropped significantly in cluttered or dark environments - something that traditional metrics don't fully capture.
       </p>
 
       <h2>Challenges with Existing Datasets</h2>
@@ -94,7 +94,7 @@
       </ul>
 
       <p>
-        In <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, user trials with blind participants revealed that audio feedback greatly improved task completion rate — even when detection confidence was low. This shows that effective design can compensate for technical limitations.
+        In <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, user trials with blind participants revealed that audio feedback greatly improved task completion rate - even when detection confidence was low. This shows that effective design can compensate for technical limitations.
       </p>
 
       <h2>Best Practices in Evaluation</h2>
@@ -107,7 +107,7 @@
       </ul>
 
       <p>
-        A combination of benchmark-style evaluation and UX research is needed to truly measure the quality of an assistive object-finding system. In the next section, we turn to the user interface itself — how systems guide users via audio, haptics, or visual cues, and how interaction design affects adoption and usability.
+        A combination of benchmark-style evaluation and UX research is needed to truly measure the quality of an assistive object-finding system. In the next section, we turn to the user interface itself - how systems guide users via audio, haptics, or visual cues, and how interaction design affects adoption and usability.
       </p>
 
       <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
@@ -117,27 +117,18 @@
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });

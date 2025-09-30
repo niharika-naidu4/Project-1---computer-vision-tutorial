@@ -227,46 +227,39 @@ body {
 /* Pill-style Navigation */
 .pill-nav {
   overflow-x: auto;
-  background: var(--glass-bg);
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  box-shadow: var(--shadow);
-  margin: 1rem auto;
-  text-align: center;
-  backdrop-filter: var(--blur);
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  padding: 0.75rem 0;
+  margin-bottom: 1rem;
 }
 
 .nav-wrapper {
-  display: inline-flex;
+  display: flex;
   gap: 1rem;
   flex-wrap: nowrap;
-  white-space: nowrap;
   min-width: max-content;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.nav-wrapper::-webkit-scrollbar {
-  display: none;
+  padding: 0 1rem;
 }
 
 .pill-nav a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 999px;
   text-decoration: none;
-  color: var(--accent);
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
-  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  color: var(--accent, #00796b);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
-.pill-nav a:hover,
-.pill-nav a[aria-current="page"],
-.pill-nav a.active {
-  background: var(--accent);
+.pill-nav a:hover {
+  background: var(--accent, #00796b);
+  color: white;
+}
+
+.pill-nav a.active,
+.pill-nav a[aria-current="page"] {
+  background-color: var(--accent, #00796b);
   color: white;
   font-weight: 600;
 }

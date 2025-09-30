@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Computer Vision for Assistive Object-Finding: A Survey of Mobile and Senior-Oriented Methods. Accessible research tutorial.">
-    <title>Computer Vision for Assistive Object-Finding — Research Tutorial</title>
-    <link rel="preload" href="assets/css/styles-clean.css?v=18" as="style">
-    <link rel="stylesheet" href="assets/css/styles-clean.css?v=18">
+    <title>Computer Vision for Assistive Object-Finding - Research Tutorial</title>
+    <link rel="preload" href="assets/css/styles-clean.css?v=20" as="style">
+    <link rel="stylesheet" href="assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -48,7 +48,7 @@
       </section>
 
       <p style="max-width: 600px; margin: 0 auto 2.5rem auto; font-size: 1rem; color: #475569; text-align: justify; text-justify: inter-word; padding: 0 1rem;">
-        This research tutorial reviews the use of mobile computer vision to help seniors locate everyday objects they often misplace—like glasses, keys, and medications. Explore the challenges, current solutions, and the future of this assistive technology.
+        This research tutorial reviews the use of mobile computer vision to help seniors locate everyday objects they often misplace-like glasses, keys, and medications. Explore the challenges, current solutions, and the future of this assistive technology.
       </p>
 
       <!-- Tutorial Duration -->
@@ -69,27 +69,18 @@
 
     <script src="assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Survey of Assistive Vision Systems — Computer Vision for Assistive Object-Finding tutorial.">
-    <title>Survey of Assistive Vision Systems — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Survey of Assistive Vision Systems - Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Survey of Assistive Vision Systems - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -47,7 +47,7 @@
       </section>
 
       <p>
-        In the field of assistive technology, computer vision (CV) has historically been applied to broader accessibility challenges like indoor/outdoor navigation, reading signs, and object recognition for the visually impaired. However, the recent shift toward <strong>fine-grained object-finding</strong> — the task of helping users locate their own, specific items in real-world settings — marks a significant evolution in this space.
+        In the field of assistive technology, computer vision (CV) has historically been applied to broader accessibility challenges like indoor/outdoor navigation, reading signs, and object recognition for the visually impaired. However, the recent shift toward <strong>fine-grained object-finding</strong> - the task of helping users locate their own, specific items in real-world settings - marks a significant evolution in this space.
       </p>
 
       <p>
@@ -59,7 +59,7 @@
       </p>
 
       <p>
-        Similarly, <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a> proposed <strong>OpenGuide</strong>, which integrates vision-language detection with physical guidance, using AR navigation and scene graphs to help users find items in indoor environments. While OpenGuide uses heavier computation and sensor fusion, it shows strong potential for multi-step retrieval and spatial understanding — something earlier systems lacked.
+        Similarly, <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a> proposed <strong>OpenGuide</strong>, which integrates vision-language detection with physical guidance, using AR navigation and scene graphs to help users find items in indoor environments. While OpenGuide uses heavier computation and sensor fusion, it shows strong potential for multi-step retrieval and spatial understanding - something earlier systems lacked.
       </p>
 
       <p>
@@ -81,27 +81,18 @@
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });

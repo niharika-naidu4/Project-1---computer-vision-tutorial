@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Interaction, Accessibility & UX — Computer Vision for Assistive Object-Finding tutorial.">
-    <title>Interaction, Accessibility & UX — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Interaction, Accessibility & UX - Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Interaction, Accessibility & UX - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -47,7 +47,7 @@
       </section>
 
       <p>
-        Designing an effective assistive object-finding system is not just about detection accuracy — it's about delivering the result in a way the user can actually understand, trust, and act on. For older adults or individuals with cognitive or visual impairments, this means building systems with thoughtful interaction flows, multimodal feedback, and privacy-aware operation.
+        Designing an effective assistive object-finding system is not just about detection accuracy - it's about delivering the result in a way the user can actually understand, trust, and act on. For older adults or individuals with cognitive or visual impairments, this means building systems with thoughtful interaction flows, multimodal feedback, and privacy-aware operation.
       </p>
 
       <h2>Guidance Modalities</h2>
@@ -91,7 +91,7 @@
 
       <h2>Privacy & On-Device Processing</h2>
       <p>
-        Vision-based systems inherently process user surroundings — including potentially sensitive environments like homes, bathrooms, and bedrooms. For this reason, on-device inference is preferred over cloud-based pipelines in assistive contexts.
+        Vision-based systems inherently process user surroundings - including potentially sensitive environments like homes, bathrooms, and bedrooms. For this reason, on-device inference is preferred over cloud-based pipelines in assistive contexts.
       </p>
 
       <p>
@@ -112,7 +112,7 @@
       </p>
 
       <p>
-        In the next section, we'll explore the practical and technical challenges that still make object-finding a difficult task — including clutter, occlusion, and personalization.
+        In the next section, we'll explore the practical and technical challenges that still make object-finding a difficult task - including clutter, occlusion, and personalization.
       </p>
 
       <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
@@ -122,27 +122,18 @@
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });

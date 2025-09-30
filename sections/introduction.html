@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Introduction — Computer Vision for Assistive Object-Finding tutorial.">
-    <title>Introduction — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Introduction - Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Introduction - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -51,7 +51,7 @@
       </p>
 
       <p>
-        Computer Vision (CV) offers a compelling solution. Recent advances have made it possible to run accurate object detection models directly on mobile and embedded devices. This opens the door to building real-time, privacy-respecting, on-device systems that can recognize personal items and guide users toward them. The goal is not merely detection, but <strong>guidance</strong> — making the system not just "smart," but usable and trusted by seniors or those with cognitive decline.
+        Computer Vision (CV) offers a compelling solution. Recent advances have made it possible to run accurate object detection models directly on mobile and embedded devices. This opens the door to building real-time, privacy-respecting, on-device systems that can recognize personal items and guide users toward them. The goal is not merely detection, but <strong>guidance</strong> - making the system not just "smart," but usable and trusted by seniors or those with cognitive decline.
       </p>
 
       <p>
@@ -64,7 +64,7 @@
       </p>
 
       <p>
-        The impact of misplacing items extends beyond mere inconvenience. Studies have shown that seniors who frequently lose track of essential items like medications may skip doses, leading to serious health consequences. Similarly, losing keys or wallets can restrict mobility and independence, forcing reliance on caregivers or family members. The psychological toll—feelings of frustration, anxiety, and loss of autonomy—can be equally significant, potentially accelerating cognitive decline and reducing quality of life.
+        The impact of misplacing items extends beyond mere inconvenience. Studies have shown that seniors who frequently lose track of essential items like medications may skip doses, leading to serious health consequences. Similarly, losing keys or wallets can restrict mobility and independence, forcing reliance on caregivers or family members. The psychological toll-feelings of frustration, anxiety, and loss of autonomy-can be equally significant, potentially accelerating cognitive decline and reducing quality of life.
       </p>
 
       <h3>Why Computer Vision?</h3>
@@ -73,7 +73,7 @@
       </p>
 
       <p>
-        Computer vision offers a fundamentally different approach: instead of requiring infrastructure or pre-tagging, it leverages the camera that most people already carry in their smartphone. Modern object detection models can recognize items on-demand, without any prior setup. This "zero-infrastructure" approach is particularly appealing for seniors who may struggle with technology setup or maintenance. Moreover, vision-based systems can provide rich spatial guidance—not just "your keys are nearby," but "turn left, look down, they're under the newspaper"—making them more practical for real-world use.
+        Computer vision offers a fundamentally different approach: instead of requiring infrastructure or pre-tagging, it leverages the camera that most people already carry in their smartphone. Modern object detection models can recognize items on-demand, without any prior setup. This "zero-infrastructure" approach is particularly appealing for seniors who may struggle with technology setup or maintenance. Moreover, vision-based systems can provide rich spatial guidance-not just "your keys are nearby," but "turn left, look down, they're under the newspaper"-making them more practical for real-world use.
       </p>
 
       <figure style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto;">
@@ -84,6 +84,52 @@
           High-level assistive object-finding pipeline: Enroll an item, detect it in the scene, and guide the user to it. (Original diagram created by author, based on concepts from [2].)
         </figcaption>
       </figure>
+
+      <h3>Algorithm: High-Level Assistive Object-Finding System (Based on ObjectFinder [2])</h3>
+      <pre><code class="language-plaintext"><strong>Algorithm 2:</strong> End-to-End Assistive Object-Finding Pipeline
+
+<strong>Input:</strong> User query (text or image), Live camera feed
+<strong>Output:</strong> Audio/haptic guidance to object location
+
+<strong>Phase 1: Enrollment</strong>
+1. User provides object description:
+   - Option A: Capture reference image of target object
+   - Option B: Enter text description (e.g., "my reading glasses")
+2. Extract and store object descriptor:
+   - If image: descriptor = VisualEncoder(reference_image)
+   - If text: descriptor = TextEncoder(query_text)
+3. Store descriptor in user's personal object database
+
+<strong>Phase 2: Detection & Tracking</strong>
+4. Initialize camera stream
+5. For each frame I_t:
+   a. Run object detector/matcher:
+      - detections = Detect(I_t, descriptor)
+   b. If detections found:
+      - Track object across frames using tracking algorithm
+      - Estimate 3D position using depth sensor (if available)
+   c. Else:
+      - Provide feedback: "Keep scanning the area"
+
+<strong>Phase 3: Guidance</strong>
+6. Once object is reliably detected:
+   a. Compute relative position (distance, direction):
+      - direction = ComputeDirection(camera_pose, object_bbox)
+      - distance = EstimateDistance(object_bbox, depth_map)
+
+   b. Generate guidance instructions:
+      - If distance > 2m: "Move forward, object ahead"
+      - If distance < 2m: "Object is 1 meter to your right"
+      - If distance < 0.5m: "Reach forward, object in front of you"
+
+   c. Provide multimodal feedback:
+      - Audio: Text-to-speech guidance
+      - Haptic: Vibration patterns indicating direction
+      - Visual: Highlight bounding box (for low-vision users)
+
+7. Continue tracking until user confirms object found
+
+<strong>Return:</strong> Success/failure status</code></pre>
 
       <p>
         This tutorial aims to survey key research developments that support this shift. We explore detection and tracking approaches across three tiers: classical vision pipelines, lightweight mobile-optimized deep-learning models, and emerging open-vocabulary + vision-language models (like <a href="annotated-bibliography.html#ref-5" target="_blank">AED [5]</a>). Alongside technical analysis, we examine real-world evaluation methods, UI design considerations, user feedback, and ethical trade-offs, as drawn from the literature.
@@ -115,27 +161,18 @@
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });

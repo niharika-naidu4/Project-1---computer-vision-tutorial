@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Modern On-Device & Open-Vocabulary Models — Computer Vision for Assistive Object-Finding tutorial.">
-    <title>Modern On-Device & Open-Vocabulary Models — Assistive Object-Finding</title>
-    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+    <meta name="description" content="Modern On-Device & Open-Vocabulary Models - Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Modern On-Device & Open-Vocabulary Models - Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=20">
   </head>
   <body>
     <header class="site-header" role="banner">
@@ -47,7 +47,7 @@
       </section>
 
       <p>
-        Deep learning–based object detection and tracking methods have significantly advanced the capabilities of assistive technologies. Unlike classical methods that rely on hand-engineered features, modern models can generalize across varying lighting conditions, clutter, and object appearances. Furthermore, the increasing efficiency of model architectures and compiler frameworks has made it feasible to run these models <strong>on-device</strong> — i.e., directly on smartphones or wearables without requiring cloud access.
+        Deep learning–based object detection and tracking methods have significantly advanced the capabilities of assistive technologies. Unlike classical methods that rely on hand-engineered features, modern models can generalize across varying lighting conditions, clutter, and object appearances. Furthermore, the increasing efficiency of model architectures and compiler frameworks has made it feasible to run these models <strong>on-device</strong> - i.e., directly on smartphones or wearables without requiring cloud access.
       </p>
 
       <h2>Lightweight Object Detection Models</h2>
@@ -77,6 +77,54 @@
       <p>
         <strong>FUS3D</strong>, proposed in <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a>, combines 3D detection and tracking into a unified pipeline. The system is designed for edge deployment and uses voxel representations for efficiency, making it applicable to mobile-based indoor object-finding.
       </p>
+
+      <h3>Algorithm: Tracking-by-Detection Pipeline (Based on FUS3D [4])</h3>
+      <pre><code class="language-plaintext"><strong>Algorithm 1:</strong> Real-Time Object Tracking-by-Detection
+
+<strong>Input:</strong> Video stream {I_1, I_2, ..., I_t}, Target object descriptor D_target
+<strong>Output:</strong> Object trajectory {bbox_1, bbox_2, ..., bbox_t}
+
+1. <strong>Initialization:</strong>
+   - active_tracks = ∅  // Set of active object tracks
+   - track_id_counter = 0
+
+2. <strong>For each frame I_t:</strong>
+
+   a. <strong>Detection Phase:</strong>
+      - Run object detector on I_t → detections = {d_1, d_2, ..., d_n}
+      - Each detection d_i = (bbox_i, class_i, confidence_i)
+
+   b. <strong>Feature Extraction:</strong>
+      - For each detection d_i:
+          Extract appearance feature vector f_i from bbox_i region
+
+   c. <strong>Data Association:</strong>
+      - For each active track T_j in active_tracks:
+          • Predict next position using Kalman filter: bbox_pred_j
+          • Compute IoU(bbox_pred_j, bbox_i) for all detections
+          • Compute feature similarity: sim(f_track_j, f_i)
+          • Association cost = α·(1-IoU) + β·(1-sim)
+
+      - Solve assignment problem (Hungarian algorithm):
+          matches = AssignDetectionsToTracks(detections, active_tracks)
+
+   d. <strong>Track Update:</strong>
+      - For each matched pair (d_i, T_j):
+          Update T_j with new detection d_i
+          Update Kalman filter state
+
+      - For unmatched detections:
+          Create new track with track_id = track_id_counter++
+
+      - For unmatched tracks:
+          Mark as lost; delete if lost > max_age frames
+
+   e. <strong>Target Filtering:</strong>
+      - Filter tracks to find target object:
+          target_track = argmax_T similarity(T.features, D_target)
+      - Output bbox_t = target_track.bbox
+
+3. <strong>Return:</strong> Complete trajectory of target object</code></pre>
 
       <h2>Open-Vocabulary Object Detection</h2>
       <p>
@@ -117,27 +165,18 @@
     </main>
     <script src="../assets/js/main.js?v=7" defer></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.pill-nav a');
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = location.pathname.split("/").pop() || "index.html";
+        const links = document.querySelectorAll(".pill-nav a");
 
-        navLinks.forEach(link => {
-          const linkPath = link.getAttribute('href').split('/').pop();
-          if (linkPath === currentPath) {
-            link.setAttribute('aria-current', 'page');
-            link.classList.add('active');
+        links.forEach(link => {
+          const href = link.getAttribute("href");
+          if (href === current || href === "./" + current) {
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
 
-            // Scroll into view if needed
-            setTimeout(() => {
-              const navWrapper = document.querySelector('.nav-wrapper');
-              if (navWrapper) {
-                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
-                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
-              }
-            }, 100);
-          } else {
-            link.removeAttribute('aria-current');
-            link.classList.remove('active');
+            // Scroll it into view
+            link.scrollIntoView({ inline: "center", behavior: "smooth", block: "nearest" });
           }
         });
       });
