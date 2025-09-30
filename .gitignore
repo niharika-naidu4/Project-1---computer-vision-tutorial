@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Scripts
+*.sh
+*.py
+add_nav_script.sh
+add_script.py
+
+# Markdown files (optional - remove if you want to include them)
+*-audio-script.md
+audio-recording-scripts.md
+updated-audio-scripts.md
+introduction-audio-script.md
+

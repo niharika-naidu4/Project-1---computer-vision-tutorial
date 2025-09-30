@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Future Directions & Conclusion — Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Future Directions & Conclusion — Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1 class="site-title">Computer Vision for Assistive Object-Finding</h1>
+        <p class="site-subtitle">A Survey of Mobile and Senior-Oriented Methods</p>
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="../index.html">Home</a>
+            <a href="introduction.html">Introduction & Motivation</a>
+            <a href="related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="classical-methods.html">Classical Detection Methods</a>
+            <a href="modern-on-device.html">Modern On-Device Models</a>
+            <a href="datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="accessibility-privacy.html">Accessibility & UX</a>
+            <a href="challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="future-conclusion.html">Conclusion</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container" role="main" style="padding: 2rem 0;">
+      <h1>Future Directions & Conclusion</h1>
+
+      <!-- Reading Time -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span style="display: inline-block; background: rgba(0, 121, 107, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500;">
+          ⏱️ 1.5 minutes
+        </span>
+      </div>
+
+      <section aria-label="Page audio" style="margin: 1.5rem 0;">
+        <audio controls preload="none" aria-label="Audio narration for Future Directions & Conclusion" style="width: 100%; max-width: 600px;">
+          <source src="../assets/audio/future-conclusion.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p>
+        The field of assistive object-finding is rapidly evolving, driven by advances in edge computing, vision-language models, and user-centric design. While current systems show promise in helping seniors and visually impaired users locate everyday items, several important research directions remain.
+      </p>
+
+      <h2>1. Hybrid Vision-Language Models for Fine-Grained Retrieval</h2>
+      <p>
+        As shown in <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a> and <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a>, open-vocabulary models are powerful tools for flexible object queries. However, they still struggle with ambiguity, especially in multi-object scenes. Combining language grounding with temporal attention, user context, or gaze-based filtering could improve precision and reduce errors.
+      </p>
+
+      <h2>2. Context-Aware Object Search</h2>
+      <p>
+        Future systems could incorporate spatial reasoning, scene graphs, or semantic memory. For instance, if the system knows that the user last left their "remote" on the couch, it could prioritize search in that area. <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a> began exploring this, but scalable implementations for phones remain rare.
+      </p>
+
+      <h2>3. Long-Term Personalization</h2>
+      <p>
+        Users should not need to re-enroll items every session. Embedding persistence and model adaptation could allow systems to remember the user's specific keys or glasses. Semi-supervised learning or user feedback loops could enable this — though care must be taken to avoid overfitting or data bloat on-device.
+      </p>
+
+      <h2>4. Ethical Design & Privacy Defaults</h2>
+      <p>
+        As systems process video and audio from private spaces, strong defaults must protect users. On-device processing, opt-in cloud sync, and transparent prompts are vital. Model predictions should include confidence explanations to help users know when to trust (or override) system guidance.
+      </p>
+
+      <h2>5. Evaluation at Scale</h2>
+      <p>
+        Many systems are tested in small lab environments with a few users. Moving toward community datasets, in-the-wild deployments, and large-scale trials will be key to pushing the field forward. Benchmarks must also reflect real tasks — not just bounding box accuracy.
+      </p>
+
+      <h2>Conclusion</h2>
+      <p>
+        Assistive object-finding sits at the intersection of technical innovation and human-centered design. This tutorial has reviewed classical and modern detection methods, mobile deployment strategies, evaluation practices, and UX considerations — all grounded in recent research from <a href="annotated-bibliography.html#ref-1" target="_blank">[1]</a> to <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a>.
+      </p>
+
+      <p>
+        By understanding the limitations and future potential of these systems, researchers and developers can create more reliable, intuitive, and ethical tools for the aging population and beyond.
+      </p>
+
+      <p style="margin-top: 2rem; font-size: 0.95rem; color: #64748b;">
+        End of Tutorial — return to <a href="../index.html">Home</a> or try the <a href="quiz.html">Quiz</a>.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+        <a href="challenges-gaps.html" class="btn" style="text-decoration: none;">← Previous</a>
+        <a href="quiz.html" class="btn btn-primary" style="text-decoration: none;">Next →</a>
+      </div>
+    </main>
+    <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

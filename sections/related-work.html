@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Survey of Assistive Vision Systems — Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Survey of Assistive Vision Systems — Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1 class="site-title">Computer Vision for Assistive Object-Finding</h1>
+        <p class="site-subtitle">A Survey of Mobile and Senior-Oriented Methods</p>
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="../index.html">Home</a>
+            <a href="introduction.html">Introduction & Motivation</a>
+            <a href="related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="classical-methods.html">Classical Detection Methods</a>
+            <a href="modern-on-device.html">Modern On-Device Models</a>
+            <a href="datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="accessibility-privacy.html">Accessibility & UX</a>
+            <a href="challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="future-conclusion.html">Conclusion</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container" role="main" style="padding: 2rem 0;">
+      <h1>Survey of Assistive Vision Systems</h1>
+
+      <!-- Reading Time -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span style="display: inline-block; background: rgba(0, 121, 107, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500;">
+          ⏱️ 1.5 minutes
+        </span>
+      </div>
+
+      <section aria-label="Page audio" style="margin: 1.5rem 0;">
+        <audio controls preload="none" aria-label="Audio narration for Survey of Assistive Vision Systems" style="width: 100%; max-width: 600px;">
+          <source src="../assets/audio/related-work.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p>
+        In the field of assistive technology, computer vision (CV) has historically been applied to broader accessibility challenges like indoor/outdoor navigation, reading signs, and object recognition for the visually impaired. However, the recent shift toward <strong>fine-grained object-finding</strong> — the task of helping users locate their own, specific items in real-world settings — marks a significant evolution in this space.
+      </p>
+
+      <p>
+        Early work such as <a href="annotated-bibliography.html#ref-1" target="_blank">[1]</a> provides a comprehensive overview of CV-based assistive technologies, highlighting systems focused on navigation, gesture recognition, and basic scene understanding. These systems often rely on either wearable cameras or smartphone input to deliver contextual cues to users. However, they rarely support custom item recognition or real-time object tracking.
+      </p>
+
+      <p>
+        The work by <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a> introduced <strong>ObjectFinder</strong>, a smartphone-based system that uses open-vocabulary detection to allow blind users to find everyday objects by name. It uses CLIP-like embeddings to match a target word to an object in the visual scene. The system was evaluated through real-world use by blind participants, revealing high usability, though failure cases increased in cluttered spaces or with ambiguous labels.
+      </p>
+
+      <p>
+        Similarly, <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a> proposed <strong>OpenGuide</strong>, which integrates vision-language detection with physical guidance, using AR navigation and scene graphs to help users find items in indoor environments. While OpenGuide uses heavier computation and sensor fusion, it shows strong potential for multi-step retrieval and spatial understanding — something earlier systems lacked.
+      </p>
+
+      <p>
+        A more performance-optimized approach is <strong>FUS3D</strong> by <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a>, which combines detection and tracking into a unified 3D system with lower runtime cost. Though not specifically built for assistive scenarios, its design aligns well with real-time, on-device object-finding in homes or care facilities.
+      </p>
+
+      <p>
+        Overall, these systems form the foundation for assistive object-finding solutions, but vary significantly in target users, device requirements, vocabulary flexibility, and interface design. A critical takeaway from this survey is that no single solution fits all use cases. Researchers must consider hardware limitations, user cognition, guidance modality, and personalization to create robust, accessible systems.
+      </p>
+
+      <p>
+        In the next section, we'll explore the technical backbone behind these systems, starting with classical methods that use handcrafted features for object matching.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+        <a href="introduction.html" class="btn" style="text-decoration: none;">← Previous</a>
+        <a href="classical-methods.html" class="btn btn-primary" style="text-decoration: none;">Next →</a>
+      </div>
+    </main>
+    <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Datasets & Evaluation — Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Datasets & Evaluation — Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1 class="site-title">Computer Vision for Assistive Object-Finding</h1>
+        <p class="site-subtitle">A Survey of Mobile and Senior-Oriented Methods</p>
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="../index.html">Home</a>
+            <a href="introduction.html">Introduction & Motivation</a>
+            <a href="related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="classical-methods.html">Classical Detection Methods</a>
+            <a href="modern-on-device.html">Modern On-Device Models</a>
+            <a href="datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="accessibility-privacy.html">Accessibility & UX</a>
+            <a href="challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="future-conclusion.html">Conclusion</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container" role="main" style="padding: 2rem 0;">
+      <h1>Datasets & Evaluation</h1>
+
+      <!-- Reading Time -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span style="display: inline-block; background: rgba(0, 121, 107, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500;">
+          ⏱️ 1.5 minutes
+        </span>
+      </div>
+
+      <section aria-label="Page audio" style="margin: 1.5rem 0;">
+        <audio controls preload="none" aria-label="Audio narration for Datasets & Evaluation" style="width: 100%; max-width: 600px;">
+          <source src="../assets/audio/datasets-evaluation.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p>
+        One of the most important aspects of developing assistive object-finding systems is the ability to evaluate them rigorously — both in terms of model performance and real-world usability. This requires access to representative datasets, robust metrics, and user-centered testing protocols.
+      </p>
+
+      <h2>Evaluation Metrics</h2>
+      <p>
+        Common metrics from general object detection research still apply in assistive contexts:
+      </p>
+      <ul>
+        <li><strong>Precision:</strong> The percentage of predicted detections that are correct.</li>
+        <li><strong>Recall:</strong> The percentage of ground truth objects successfully detected.</li>
+        <li><strong>F1 Score:</strong> Harmonic mean of precision and recall.</li>
+        <li><strong>mAP (mean Average Precision):</strong> Often used in COCO and PASCAL VOC benchmarks, but can be overkill for simple assistive tasks.</li>
+        <li><strong>Latency:</strong> Time taken from input frame to prediction/rendering (important for user comfort).</li>
+        <li><strong>User Success Rate:</strong> How often the system helped a user correctly find the item in realistic conditions.</li>
+      </ul>
+
+      <p>
+        For example, in <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, the authors used both detection accuracy and <em>task success rate</em> from user trials to evaluate their system. They found that while mAP was stable across scenes, user performance dropped significantly in cluttered or dark environments — something that traditional metrics don't fully capture.
+      </p>
+
+      <h2>Challenges with Existing Datasets</h2>
+      <p>
+        A major challenge is the lack of standardized datasets for the object-finding task in assistive scenarios. Most CV benchmarks (e.g., COCO, ImageNet, LVIS) are designed for general-purpose detection or classification. They do not reflect:
+      </p>
+      <ul>
+        <li>Item appearance changes (glasses folded vs. open)</li>
+        <li>User-specific objects (e.g., "grandpa's red mug")</li>
+        <li>Indoor lighting, occlusion, and clutter</li>
+        <li>Voice-to-vision queries or natural prompts</li>
+      </ul>
+
+      <p>
+        As a result, many assistive systems rely on <strong>custom home-collected datasets</strong> or <strong>synthetic augmentations</strong>. In <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a>, the researchers collected indoor videos using a head-mounted RGB-D camera, annotated with spatial references, room layout, and natural instructions.
+      </p>
+
+      <h2>User Studies and Real-World Testing</h2>
+      <p>
+        Objective metrics alone are not sufficient. Assistive systems must be evaluated with real users in realistic environments. Typical methodologies include:
+      </p>
+      <ul>
+        <li>Blind or senior participants using the system for real tasks</li>
+        <li>Time-to-find vs. ground truth location</li>
+        <li>Success/failure logging over multiple sessions</li>
+        <li>Subjective ratings: ease-of-use, frustration, trust</li>
+      </ul>
+
+      <p>
+        In <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, user trials with blind participants revealed that audio feedback greatly improved task completion rate — even when detection confidence was low. This shows that effective design can compensate for technical limitations.
+      </p>
+
+      <h2>Best Practices in Evaluation</h2>
+      <ul>
+        <li>Always report both technical metrics and user-facing outcomes</li>
+        <li>Use in-home testing where possible to capture environmental variability</li>
+        <li>Measure performance under "in the wild" conditions: lighting, background clutter, partial occlusion</li>
+        <li>Log false positives: false guidance may be more damaging than silence</li>
+        <li>Include metrics for guidance latency and response time</li>
+      </ul>
+
+      <p>
+        A combination of benchmark-style evaluation and UX research is needed to truly measure the quality of an assistive object-finding system. In the next section, we turn to the user interface itself — how systems guide users via audio, haptics, or visual cues, and how interaction design affects adoption and usability.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+        <a href="modern-on-device.html" class="btn" style="text-decoration: none;">← Previous</a>
+        <a href="accessibility-privacy.html" class="btn btn-primary" style="text-decoration: none;">Next →</a>
+      </div>
+    </main>
+    <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

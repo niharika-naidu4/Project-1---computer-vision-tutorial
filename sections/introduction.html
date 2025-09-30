@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Introduction — Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Introduction — Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1 class="site-title">Computer Vision for Assistive Object-Finding</h1>
+        <p class="site-subtitle">A Survey of Mobile and Senior-Oriented Methods</p>
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="../index.html">Home</a>
+            <a href="introduction.html">Introduction & Motivation</a>
+            <a href="related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="classical-methods.html">Classical Detection Methods</a>
+            <a href="modern-on-device.html">Modern On-Device Models</a>
+            <a href="datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="accessibility-privacy.html">Accessibility & UX</a>
+            <a href="challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="future-conclusion.html">Conclusion</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container" role="main" style="padding: 2rem 0;">
+      <h1>Introduction & Motivation</h1>
+
+      <!-- Reading Time -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span style="display: inline-block; background: rgba(0, 121, 107, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500;">
+          ⏱️ 4 minutes
+        </span>
+      </div>
+
+      <section aria-label="Page audio" style="margin: 1.5rem 0;">
+        <audio controls preload="none" aria-label="Audio narration for Introduction & Motivation" style="width: 100%; max-width: 600px;">
+          <source src="../assets/audio/introduction.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p>
+        Seniors and individuals with memory impairments frequently misplace essential everyday items such as glasses, keys, medications, or wallets. These small frustrations can quickly scale into critical challenges that impact independence, time management, and emotional well-being. As populations age globally, assistive technologies are becoming increasingly vital in preserving autonomy and reducing the cognitive burden associated with routine object-finding tasks.
+      </p>
+
+      <p>
+        Computer Vision (CV) offers a compelling solution. Recent advances have made it possible to run accurate object detection models directly on mobile and embedded devices. This opens the door to building real-time, privacy-respecting, on-device systems that can recognize personal items and guide users toward them. The goal is not merely detection, but <strong>guidance</strong> — making the system not just "smart," but usable and trusted by seniors or those with cognitive decline.
+      </p>
+
+      <p>
+        While prior work in assistive CV has focused on broad navigation or environmental understanding, more recent systems like <a href="annotated-bibliography.html#ref-2" target="_blank">ObjectFinder [2]</a> and <a href="annotated-bibliography.html#ref-3" target="_blank">OpenGuide [3]</a> represent a shift toward <strong>fine-grained, goal-specific visual assistance</strong>, particularly for locating user-specified targets in home environments.
+      </p>
+
+      <h3>The Growing Need for Assistive Technology</h3>
+      <p>
+        According to the World Health Organization, the global population aged 60 years and older is expected to reach 2 billion by 2050, more than doubling from 900 million in 2015. This demographic shift brings increased attention to age-related cognitive decline, including mild cognitive impairment (MCI) and early-stage dementia. Even for healthy seniors, the simple act of remembering where everyday items are placed can become increasingly challenging due to natural memory changes associated with aging.
+      </p>
+
+      <p>
+        The impact of misplacing items extends beyond mere inconvenience. Studies have shown that seniors who frequently lose track of essential items like medications may skip doses, leading to serious health consequences. Similarly, losing keys or wallets can restrict mobility and independence, forcing reliance on caregivers or family members. The psychological toll—feelings of frustration, anxiety, and loss of autonomy—can be equally significant, potentially accelerating cognitive decline and reducing quality of life.
+      </p>
+
+      <h3>Why Computer Vision?</h3>
+      <p>
+        Traditional solutions to object-finding have included physical organization systems, memory aids like notes and labels, and tracking devices such as Bluetooth tags or RFID chips. While these approaches can be effective, they have significant limitations. Physical tags require users to remember to attach them to items, maintain batteries, and manage multiple devices. They also only work for pre-tagged objects, making them impractical for the hundreds of small items a person might misplace.
+      </p>
+
+      <p>
+        Computer vision offers a fundamentally different approach: instead of requiring infrastructure or pre-tagging, it leverages the camera that most people already carry in their smartphone. Modern object detection models can recognize items on-demand, without any prior setup. This "zero-infrastructure" approach is particularly appealing for seniors who may struggle with technology setup or maintenance. Moreover, vision-based systems can provide rich spatial guidance—not just "your keys are nearby," but "turn left, look down, they're under the newspaper"—making them more practical for real-world use.
+      </p>
+
+      <figure style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto;">
+        <img src="../assets/img/pipeline.png"
+             alt="Diagram showing assistive vision system: Enroll, Detect/Track, Guide"
+             style="max-width: 100%; height: auto;" loading="lazy" />
+        <figcaption style="text-align: center; color: #64748b; font-size: 0.95rem;">
+          High-level assistive object-finding pipeline: Enroll an item, detect it in the scene, and guide the user to it. (Original diagram created by author, based on concepts from [2].)
+        </figcaption>
+      </figure>
+
+      <p>
+        This tutorial aims to survey key research developments that support this shift. We explore detection and tracking approaches across three tiers: classical vision pipelines, lightweight mobile-optimized deep-learning models, and emerging open-vocabulary + vision-language models (like <a href="annotated-bibliography.html#ref-5" target="_blank">AED [5]</a>). Alongside technical analysis, we examine real-world evaluation methods, UI design considerations, user feedback, and ethical trade-offs, as drawn from the literature.
+      </p>
+
+      <p>
+        Unlike a coding tutorial, this is a research-focused guide intended to deepen understanding of how assistive object-finding systems are implemented, evaluated, and evolving. Readers are encouraged to recreate or extend components discussed throughout the tutorial using references such as <a href="annotated-bibliography.html#ref-1" target="_blank">[1]</a>, <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a>, and others.
+      </p>
+
+      <p>The rest of the tutorial is structured as follows:</p>
+      <ul>
+        <li><strong>Section 2:</strong> Survey of Assistive Vision Systems</li>
+        <li><strong>Section 3:</strong> Classical Detection Methods</li>
+        <li><strong>Section 4:</strong> Modern On-Device & Open-Vocabulary Models</li>
+        <li><strong>Section 5:</strong> Datasets & Evaluation</li>
+        <li><strong>Section 6:</strong> Interaction, Accessibility & UX</li>
+        <li><strong>Section 7:</strong> Failure Cases & Open Challenges</li>
+        <li><strong>Section 8:</strong> Future Directions & Conclusion</li>
+      </ul>
+
+      <p>
+        This site references recent peer-reviewed research, including <a href="annotated-bibliography.html#ref-1" target="_blank">[1]</a>, <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a>, <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a>, and <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a>.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+        <a href="../index.html" class="btn" style="text-decoration: none;">← Previous</a>
+        <a href="related-work.html" class="btn btn-primary" style="text-decoration: none;">Next →</a>
+      </div>
+    </main>
+    <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

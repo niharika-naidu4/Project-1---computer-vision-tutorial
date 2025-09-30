@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.github.io/index.html</loc></url>
+  <url><loc>https://example.github.io/sections/introduction.html</loc></url>
+  <url><loc>https://example.github.io/sections/related-work.html</loc></url>
+  <url><loc>https://example.github.io/sections/classical-methods.html</loc></url>
+  <url><loc>https://example.github.io/sections/modern-on-device.html</loc></url>
+  <url><loc>https://example.github.io/sections/datasets-evaluation.html</loc></url>
+  <url><loc>https://example.github.io/sections/accessibility-privacy.html</loc></url>
+  <url><loc>https://example.github.io/sections/challenges-gaps.html</loc></url>
+  <url><loc>https://example.github.io/sections/future-conclusion.html</loc></url>
+  <url><loc>https://example.github.io/sections/annotated-bibliography.html</loc></url>
+  <url><loc>https://example.github.io/sections/quiz.html</loc></url>
+</urlset>
+
+

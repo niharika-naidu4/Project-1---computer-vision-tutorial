@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Classical Detection Methods — Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Classical Detection Methods — Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1 class="site-title">Computer Vision for Assistive Object-Finding</h1>
+        <p class="site-subtitle">A Survey of Mobile and Senior-Oriented Methods</p>
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="../index.html">Home</a>
+            <a href="introduction.html">Introduction & Motivation</a>
+            <a href="related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="classical-methods.html">Classical Detection Methods</a>
+            <a href="modern-on-device.html">Modern On-Device Models</a>
+            <a href="datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="accessibility-privacy.html">Accessibility & UX</a>
+            <a href="challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="future-conclusion.html">Conclusion</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container" role="main" style="padding: 2rem 0;">
+      <h1>Classical Detection Methods</h1>
+
+      <!-- Reading Time -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span style="display: inline-block; background: rgba(0, 121, 107, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500;">
+          ⏱️ 1.5 minutes
+        </span>
+      </div>
+
+      <section aria-label="Page audio" style="margin: 1.5rem 0;">
+        <audio controls preload="none" aria-label="Audio narration for Classical Detection Methods" style="width: 100%; max-width: 600px;">
+          <source src="../assets/audio/classical-methods.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p>
+        Before the deep learning era, object detection and matching tasks were dominated by <strong>handcrafted feature-based techniques</strong>. These classical methods focused on extracting stable visual descriptors (keypoints, edges, contours) and matching them across frames or between live input and stored templates.
+      </p>
+
+      <h2>ORB (Oriented FAST and Rotated BRIEF)</h2>
+      <p>
+        ORB is a popular keypoint descriptor that combines the <strong>FAST keypoint detector</strong> and the <strong>BRIEF descriptor</strong>, with additional orientation and rotation invariance. It is lightweight, fast, and suitable for real-time applications on mobile devices. ORB is often used in SLAM systems, augmented reality, and simple object-finding apps.
+      </p>
+
+      <pre><code class="language-python">// ORB object matching example using OpenCV (Python)
+import cv2
+
+orb = cv2.ORB_create()
+kp1, des1 = orb.detectAndCompute(query_img, None)
+kp2, des2 = orb.detectAndCompute(frame_img, None)
+
+bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+matches = bf.match(des1, des2)
+matches = sorted(matches, key=lambda x: x.distance)
+
+# Draw matched features
+result = cv2.drawMatches(query_img, kp1, frame_img, kp2, matches[:10], None, flags=2)</code></pre>
+
+      <p>
+        ORB-based matching is computationally efficient and requires no GPU, making it viable for low-end Android devices. However, it degrades under significant lighting changes, occlusion, or when the item is only partially visible. Still, it remains a useful method in constrained scenarios or when embedded compute resources are extremely limited.
+      </p>
+
+      <h2>Template Matching</h2>
+      <p>
+        Template matching compares a static image (the "template") with sliding windows across an input image to find pixel-level matches. Though intuitive, it performs poorly when there are changes in scale, rotation, or lighting. It also does not scale well when trying to match many objects.
+      </p>
+
+      <pre><code class="language-python">// Template matching example in OpenCV
+res = cv2.matchTemplate(frame_img, template_img, cv2.TM_CCOEFF_NORMED)
+min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+
+top_left = max_loc
+bottom_right = (top_left[0] + template_img.shape[1], top_left[1] + template_img.shape[0])
+cv2.rectangle(frame_img, top_left, bottom_right, 255, 2)</code></pre>
+
+      <p>
+        Template matching can still be useful in tightly controlled environments, such as a smart home shelf scanner or pill identification kiosk. However, it lacks the robustness and flexibility required for open-world assistive scenarios.
+      </p>
+
+      <h2>Comparison with Modern Methods</h2>
+
+      <figure style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto;">
+        <img src="../assets/img/classical-vs-dl.png"
+             alt="Comparison of classical keypoints vs. deep learning bounding boxes"
+             style="max-width: 100%; height: auto;" loading="lazy" />
+        <figcaption style="text-align: center; color: #64748b; font-size: 0.95rem;">
+          Classical detection using keypoints (left) vs. deep learning-based detection using bounding boxes (right). (Original diagram created by author, based on concepts from [4].)
+        </figcaption>
+      </figure>
+
+      <p>
+        While these classical techniques offer simplicity and efficiency, they are being rapidly replaced by <strong>deep learning-based object detectors</strong> that offer superior accuracy, robustness to variation, and scalability. Nevertheless, classical approaches remain useful:
+      </p>
+
+      <ul>
+        <li>When model size, latency, or privacy prohibits deep learning</li>
+        <li>As a fallback or initialization step in hybrid systems</li>
+        <li>In constrained, repeatable environments (e.g., hospitals, smart homes)</li>
+      </ul>
+
+      <p>
+        Systems like <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a> still incorporate traditional techniques into tracking pipelines for performance reasons. A complete system often benefits from mixing classical tracking with modern detection.
+      </p>
+
+      <p>
+        In the next section, we will explore how mobile and embedded devices now support full deep-learning pipelines, enabling high-quality detection and tracking without handcrafted features.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+        <a href="related-work.html" class="btn" style="text-decoration: none;">← Previous</a>
+        <a href="modern-on-device.html" class="btn btn-primary" style="text-decoration: none;">Next →</a>
+      </div>
+    </main>
+    <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

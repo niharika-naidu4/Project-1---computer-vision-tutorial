@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Failure Cases & Open Challenges — Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Failure Cases & Open Challenges — Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1 class="site-title">Computer Vision for Assistive Object-Finding</h1>
+        <p class="site-subtitle">A Survey of Mobile and Senior-Oriented Methods</p>
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="../index.html">Home</a>
+            <a href="introduction.html">Introduction & Motivation</a>
+            <a href="related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="classical-methods.html">Classical Detection Methods</a>
+            <a href="modern-on-device.html">Modern On-Device Models</a>
+            <a href="datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="accessibility-privacy.html">Accessibility & UX</a>
+            <a href="challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="future-conclusion.html">Conclusion</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container" role="main" style="padding: 2rem 0;">
+      <h1>Failure Cases & Open Challenges</h1>
+
+      <!-- Reading Time -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span style="display: inline-block; background: rgba(0, 121, 107, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500;">
+          ⏱️ 1.5 minutes
+        </span>
+      </div>
+
+      <section aria-label="Page audio" style="margin: 1.5rem 0;">
+        <audio controls preload="none" aria-label="Audio narration for Failure Cases & Open Challenges" style="width: 100%; max-width: 600px;">
+          <source src="../assets/audio/challenges-gaps.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p>
+        While assistive object-finding systems have made impressive progress, real-world deployment reveals several persistent challenges. These failure cases are often not visible in traditional benchmarks but emerge consistently in home and clinical environments. Understanding these limitations is crucial to developing robust systems that can be trusted by vulnerable users.
+      </p>
+
+      <h2>Cluttered Environments</h2>
+      <p>
+        Many detection models perform well in clean, curated scenes, but struggle in the presence of background clutter, overlapping objects, or distracting textures. In <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, cluttered surfaces (e.g., kitchen counters or crowded shelves) significantly reduced detection reliability, even when the item was in full view.
+      </p>
+
+      <p>
+        Some systems attempt to resolve this using multi-frame voting or saliency mapping, but these approaches increase latency and can still be confused by visually similar objects in close proximity.
+      </p>
+
+      <h2>Look-Alike Items</h2>
+
+      <figure style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto;">
+        <img src="../assets/img/failure-cases.png"
+             alt="Two examples of assistive system failure: cluttered items and similar-looking objects"
+             style="max-width: 100%; height: auto;" loading="lazy" />
+        <figcaption style="text-align: center; color: #64748b; font-size: 0.95rem;">
+          Failure scenarios: left shows cluttered environment; right shows look-alike items (e.g., similar pill bottles or remotes). (Original diagram created by author, based on concepts from [5].)
+        </figcaption>
+      </figure>
+
+      <p>
+        A major challenge in assistive CV is distinguishing between objects with near-identical shape or color — like multiple pill bottles, sets of keys, or remote controls. Open-vocabulary models may misclassify or confidently highlight the wrong item if fine-grained differentiation is lacking.
+      </p>
+
+      <p>
+        For instance, <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a> acknowledges that even when class-agnostic tracking succeeds, semantic grounding can fail if the user prompt is ambiguous ("the black one" vs. "the silver one"). Disambiguation strategies remain an open area of research.
+      </p>
+
+      <h2>Partial Occlusion & Item Pose</h2>
+      <p>
+        Many objects appear in unpredictable poses — glasses may be folded, keys may be upside down, or partially obscured under papers. Detection models often rely on features that disappear under occlusion, resulting in false negatives.
+      </p>
+
+      <p>
+        <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a> attempts to address this by using 3D voxel features, allowing partial geometry to be matched. However, this requires a depth sensor or stereo camera — not always available on phones.
+      </p>
+
+      <h2>Personalization and Adaptation</h2>
+      <p>
+        Most systems do not adapt to individual users or home environments. An item enrolled in one session may not be recognized days later due to lighting, background, or camera angle changes. This raises the need for:
+      </p>
+      <ul>
+        <li>Continual learning from user interaction</li>
+        <li>Adaptable thresholds for detection confidence</li>
+        <li>Context-aware retrieval using room layout or past detections</li>
+      </ul>
+
+      <h2>Runtime & Battery Constraints</h2>
+      <p>
+        Real-time object-finding often involves continuous camera processing, which can drain battery and generate heat. On-device models must be aggressively optimized, and techniques like model quantization, frame skipping, and hardware acceleration (NNAPI, CoreML) are required to maintain usability.
+      </p>
+
+      <p>
+        However, compression can introduce accuracy loss — a tradeoff discussed in both <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a> and <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>. Balancing runtime efficiency and detection quality is still an open challenge.
+      </p>
+
+      <h2>Summary</h2>
+      <p>
+        These challenges highlight the complexity of building robust, user-friendly assistive CV systems. Each limitation offers opportunities for improvement — whether through better model architectures, user feedback loops, hybrid sensor fusion, or task-aware UX design.
+      </p>
+
+      <p>
+        The next and final section will outline key future directions based on trends in the literature and identify research gaps that deserve further exploration.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+        <a href="accessibility-privacy.html" class="btn" style="text-decoration: none;">← Previous</a>
+        <a href="future-conclusion.html" class="btn btn-primary" style="text-decoration: none;">Next →</a>
+      </div>
+    </main>
+    <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

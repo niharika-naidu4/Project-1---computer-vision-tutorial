@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Modern On-Device & Open-Vocabulary Models — Computer Vision for Assistive Object-Finding tutorial.">
+    <title>Modern On-Device & Open-Vocabulary Models — Assistive Object-Finding</title>
+    <link rel="stylesheet" href="../assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <h1 class="site-title">Computer Vision for Assistive Object-Finding</h1>
+        <p class="site-subtitle">A Survey of Mobile and Senior-Oriented Methods</p>
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="../index.html">Home</a>
+            <a href="introduction.html">Introduction & Motivation</a>
+            <a href="related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="classical-methods.html">Classical Detection Methods</a>
+            <a href="modern-on-device.html">Modern On-Device Models</a>
+            <a href="datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="accessibility-privacy.html">Accessibility & UX</a>
+            <a href="challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="future-conclusion.html">Conclusion</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="container" role="main" style="padding: 2rem 0;">
+      <h1>Modern On-Device & Open-Vocabulary Models</h1>
+
+      <!-- Reading Time -->
+      <div style="text-align: center; margin: 1rem 0;">
+        <span style="display: inline-block; background: rgba(0, 121, 107, 0.1); color: var(--accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 500;">
+          ⏱️ 1.5 minutes
+        </span>
+      </div>
+
+      <section aria-label="Page audio" style="margin: 1.5rem 0;">
+        <audio controls preload="none" aria-label="Audio narration for Modern On-Device & Open-Vocabulary Models" style="width: 100%; max-width: 600px;">
+          <source src="../assets/audio/modern-on-device.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p>
+        Deep learning–based object detection and tracking methods have significantly advanced the capabilities of assistive technologies. Unlike classical methods that rely on hand-engineered features, modern models can generalize across varying lighting conditions, clutter, and object appearances. Furthermore, the increasing efficiency of model architectures and compiler frameworks has made it feasible to run these models <strong>on-device</strong> — i.e., directly on smartphones or wearables without requiring cloud access.
+      </p>
+
+      <h2>Lightweight Object Detection Models</h2>
+
+      <figure style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto;">
+        <img src="../assets/img/mobile-inference.png"
+             alt="Smartphone displaying object detection with bounding box"
+             style="max-width: 45%; height: auto;" loading="lazy" />
+        <figcaption style="text-align: center; color: #64748b; font-size: 0.95rem;">
+          Real-time object detection running directly on a smartphone using a lightweight model. (Original diagram created by author, based on concepts from [2].)
+        </figcaption>
+      </figure>
+
+      <p>
+        Models such as <strong>MobileNetV2</strong>, <strong>EfficientDet-lite</strong>, and <strong>YOLOv5-Nano</strong> are designed for real-time inference on mobile CPUs and NPUs. These models typically use depthwise separable convolutions and quantization to reduce size and latency. TensorFlow Lite and PyTorch Mobile offer tools to convert and deploy such models on iOS/Android.
+      </p>
+
+      <p>
+        For example, <code>MobileNetV2 + SSD</code> is commonly used in real-time object detection apps, delivering ~30 FPS performance on mid-range Android phones. The trade-off, however, is lower accuracy on small or occluded items. In <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, the authors observed that lightweight models struggled in complex indoor scenes unless augmented with multi-frame voting or contextual re-ranking.
+      </p>
+
+      <h2>Tracking-by-Detection</h2>
+      <p>
+        In many assistive scenarios, the user enrolls a target item once (e.g., scans a pair of glasses), and the system must then track that item in real time. Most modern systems use <strong>tracking-by-detection</strong>, where each frame is passed through a detector, and a lightweight tracker (e.g., Kalman filter or optical flow) links detections across time.
+      </p>
+
+      <p>
+        <strong>FUS3D</strong>, proposed in <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a>, combines 3D detection and tracking into a unified pipeline. The system is designed for edge deployment and uses voxel representations for efficiency, making it applicable to mobile-based indoor object-finding.
+      </p>
+
+      <h2>Open-Vocabulary Object Detection</h2>
+      <p>
+        Traditionally, object detectors require training on a fixed set of classes (e.g., "person", "bottle"). However, assistive systems often need to detect arbitrary user-specific items like "grandma's pill box" or "blue reading glasses." This is where <strong>open-vocabulary detection</strong> and <strong>vision-language models (VLMs)</strong> become essential.
+      </p>
+
+      <p>
+        Models like CLIP, OWL-ViT, and GLIP allow the user to enter a free-form text prompt (e.g., "my black remote") and return detections based on learned semantic embeddings. These models require more compute, but when combined with region proposal methods, they can run efficiently on-device with distillation.
+      </p>
+
+      <p>
+        <strong>AED (Associate Everything Detected)</strong> <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a> advances this by enabling tracking of objects even when their label is unknown. This is particularly useful for cluttered homes where the user might say, "Where's that blue pen I was using?" without explicitly labeling it ahead of time.
+      </p>
+
+      <h2>Mobile Deployment Constraints</h2>
+      <p>
+        While on-device inference has many advantages (privacy, offline use, responsiveness), it also introduces several constraints:
+      </p>
+      <ul>
+        <li>Limited RAM and thermal throttling on low-end phones</li>
+        <li>Reduced accuracy due to quantized model weights</li>
+        <li>Battery drain from continuous camera access and model execution</li>
+        <li>Latency spikes if fallback to cloud inference is required</li>
+      </ul>
+
+      <p>
+        These trade-offs must be carefully considered. In <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a>, hybrid inference was used to offload complex planning to the cloud while keeping vision on-device. This hybrid architecture balances real-time UX with computation-intensive tasks.
+      </p>
+
+      <p>
+        In the next section, we will look at how researchers evaluate these systems, including what metrics are used, what datasets exist, and how user studies contribute to measuring real-world impact.
+      </p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 3rem;">
+        <a href="classical-methods.html" class="btn" style="text-decoration: none;">← Previous</a>
+        <a href="datasets-evaluation.html" class="btn btn-primary" style="text-decoration: none;">Next →</a>
+      </div>
+    </main>
+    <script src="../assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

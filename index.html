@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Computer Vision for Assistive Object-Finding: A Survey of Mobile and Senior-Oriented Methods. Accessible research tutorial.">
+    <title>Computer Vision for Assistive Object-Finding — Research Tutorial</title>
+    <link rel="preload" href="assets/css/styles-clean.css?v=18" as="style">
+    <link rel="stylesheet" href="assets/css/styles-clean.css?v=18">
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container">
+        <nav class="pill-nav" aria-label="Main Navigation">
+          <div class="nav-wrapper">
+            <a href="index.html">Home</a>
+            <a href="sections/introduction.html">Introduction & Motivation</a>
+            <a href="sections/related-work.html">Survey of Assistive Vision Systems</a>
+            <a href="sections/classical-methods.html">Classical Detection Methods</a>
+            <a href="sections/modern-on-device.html">Modern On-Device Models</a>
+            <a href="sections/datasets-evaluation.html">Datasets & Evaluation</a>
+            <a href="sections/accessibility-privacy.html">Accessibility & UX</a>
+            <a href="sections/challenges-gaps.html">Failure Cases & Challenges</a>
+            <a href="sections/future-conclusion.html">Conclusion</a>
+            <a href="sections/quiz.html">Quiz</a>
+            <a href="sections/annotated-bibliography.html">Bibliography</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container" style="padding: 4rem 3rem; text-align: center;">
+      <h1 style="font-size: 2.2rem; font-weight: bold; margin-bottom: 1rem; text-align: center; margin-left: auto; margin-right: auto; display: block; max-width: 100%; padding: 0 1rem;">
+        Computer Vision for Assistive Object-Finding
+      </h1>
+      <h2 style="font-size: 1.5rem; color: #6b7280; font-weight: 500; margin-bottom: 2rem;">
+        A Survey of Mobile and Senior-Oriented Methods
+      </h2>
+      <p style="font-size: 1rem; color: #4b5563; margin-bottom: 2rem; text-align: center;">
+        <strong>Author:</strong> Niharika Naidu Immadi
+      </p>
+
+      <section aria-label="Page audio" style="margin: 1.5rem auto; max-width: 600px;">
+        <audio controls preload="none" aria-label="Audio narration for Home Page" style="width: 100%; max-width: 600px;">
+          <source src="assets/audio/index.mp3" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <p style="max-width: 600px; margin: 0 auto 2.5rem auto; font-size: 1rem; color: #475569; text-align: justify; text-justify: inter-word; padding: 0 1rem;">
+        This research tutorial reviews the use of mobile computer vision to help seniors locate everyday objects they often misplace—like glasses, keys, and medications. Explore the challenges, current solutions, and the future of this assistive technology.
+      </p>
+
+      <!-- Tutorial Duration -->
+      <div style="background: rgba(0, 121, 107, 0.1); border-left: 4px solid var(--accent); padding: 1.5rem; margin: 2rem auto; max-width: 600px; border-radius: 0.5rem;">
+        <p style="margin: 0; font-size: 1.1rem; color: var(--text); text-align: center;">
+          <strong>⏱️ Estimated Time:</strong> 18-20 minutes
+        </p>
+        <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem; color: #64748b; text-align: center;">
+          Complete the tutorial at your own pace
+        </p>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="sections/introduction.html" class="btn">Start Tutorial</a>
+        <a href="sections/annotated-bibliography.html" class="btn">Annotated Bibliography</a>
+      </div>
+    </main>
+
+    <script src="assets/js/main.js?v=7" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.pill-nav a');
+
+        navLinks.forEach(link => {
+          const linkPath = link.getAttribute('href').split('/').pop();
+          if (linkPath === currentPath) {
+            link.setAttribute('aria-current', 'page');
+            link.classList.add('active');
+
+            // Scroll into view if needed
+            setTimeout(() => {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              if (navWrapper) {
+                const offset = link.offsetLeft - navWrapper.offsetWidth / 2 + link.offsetWidth / 2;
+                navWrapper.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+              }
+            }, 100);
+          } else {
+            link.removeAttribute('aria-current');
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+  </html>
+
+

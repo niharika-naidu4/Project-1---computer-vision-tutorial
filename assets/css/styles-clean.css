@@ -1,0 +1,395 @@
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #e0f2f1;
+  --text: #0f172a;
+  --accent: #00796b;
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --blur: blur(12px);
+  --radius: 1rem;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 1.0625rem;
+  letter-spacing: 0.01em;
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+  margin-bottom: 1.5rem;
+  line-height: 1.9;
+  max-width: 70ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Apply better spacing to all content elements */
+main p,
+main li {
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.9;
+}
+
+main {
+  padding: 4rem 4rem !important;
+  max-width: 850px;
+  margin: 0 auto;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+main > * + * {
+  margin-top: 1.25rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 3rem;
+}
+
+/* Header container should have minimal padding */
+header .container {
+  padding: 1rem 1rem !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1.5rem !important;
+  }
+
+  main {
+    padding: 2.5rem 2rem !important;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+header, footer, nav, main, .card {
+  backdrop-filter: var(--blur);
+  background: var(--glass-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+header, footer {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+h1, h2, h3 {
+  color: var(--text);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.015em;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 70ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.25;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 1.35;
+  margin-top: 3rem;
+}
+
+h3 {
+  font-size: 1.375rem;
+  line-height: 1.45;
+  margin-top: 2rem;
+}
+
+/* Better list spacing */
+ul, ol {
+  margin: 1.5rem auto;
+  padding-left: 2rem;
+  max-width: 70ch;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+li {
+  margin-bottom: 0.75rem;
+  line-height: 1.9;
+}
+
+/* Better link styling */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Code block styling - left aligned */
+pre {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem auto;
+  text-align: left !important;
+  max-width: 70ch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: left !important;
+  display: block;
+  white-space: pre;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+a:hover {
+  color: #004d40;
+  text-decoration: underline;
+}
+
+/* Center figures and images */
+figure {
+  margin: 2.5rem auto !important;
+  text-align: center;
+  max-width: 70ch;
+}
+
+figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+figcaption {
+  text-align: center !important;
+  margin-top: 1rem;
+}
+
+/* Site header styling */
+.site-title {
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.site-subtitle {
+  text-align: center;
+}
+
+/* Optimize Inter font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+/* Pill-style Navigation */
+.pill-nav {
+  overflow-x: auto;
+  background: var(--glass-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  margin: 1rem auto;
+  text-align: center;
+  backdrop-filter: var(--blur);
+}
+
+.nav-wrapper {
+  display: inline-flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  min-width: max-content;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.pill-nav a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.pill-nav a:hover,
+.pill-nav a[aria-current="page"],
+.pill-nav a.active {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+a {
+  color: var(--accent);
+}
+
+button, .btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover, button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn:active, button:active {
+  transform: translateY(0);
+}
+
+figure {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+figure img {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Table of Contents Styling */
+.toc {
+  line-height: 2;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 2rem auto !important;
+}
+
+.toc a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+  color: #004d40;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 121, 107, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top:hover {
+  background: #004d40;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 121, 107, 0.4);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    justify-content: flex-start;
+    padding: 0.5rem;
+  }
+
+  .toc {
+    line-height: 2.5;
+    font-size: 0.9rem;
+  }
+
+  .back-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+}
