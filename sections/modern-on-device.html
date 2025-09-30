@@ -57,7 +57,7 @@
              alt="Smartphone displaying object detection with bounding box"
              style="max-width: 45%; height: auto;" loading="lazy" />
         <figcaption style="text-align: center; color: #64748b; font-size: 0.95rem;">
-          Real-time object detection running directly on a smartphone using a lightweight model. (Original diagram created by author, based on concepts from [2].)
+          Real-time object detection running directly on a smartphone using a lightweight model. (Original diagram created by author, based on concepts from <a href="annotated-bibliography.html#ref-2">[2]</a>.)
         </figcaption>
       </figure>
 
@@ -66,7 +66,7 @@
       </p>
 
       <p>
-        For example, <code>MobileNetV2 + SSD</code> is commonly used in real-time object detection apps, delivering ~30 FPS performance on mid-range Android phones. The trade-off, however, is lower accuracy on small or occluded items. In <a href="annotated-bibliography.html#ref-2" target="_blank">[2]</a>, the authors observed that lightweight models struggled in complex indoor scenes unless augmented with multi-frame voting or contextual re-ranking.
+        For example, <code>MobileNetV2 + SSD</code> is commonly used in real-time object detection apps, delivering ~30 FPS performance on mid-range Android phones. The trade-off, however, is lower accuracy on small or occluded items. In <a href="annotated-bibliography.html#ref-2">[2]</a>, the authors observed that lightweight models struggled in complex indoor scenes unless augmented with multi-frame voting or contextual re-ranking.
       </p>
 
       <h2>Tracking-by-Detection</h2>
@@ -75,7 +75,7 @@
       </p>
 
       <p>
-        <strong>FUS3D</strong>, proposed in <a href="annotated-bibliography.html#ref-4" target="_blank">[4]</a>, combines 3D detection and tracking into a unified pipeline. The system is designed for edge deployment and uses voxel representations for efficiency, making it applicable to mobile-based indoor object-finding.
+        <strong>FUS3D</strong>, proposed in <a href="annotated-bibliography.html#ref-4">[4]</a>, combines 3D detection and tracking into a unified pipeline. The system is designed for edge deployment and uses voxel representations for efficiency, making it applicable to mobile-based indoor object-finding.
       </p>
 
       <h3>Algorithm: Tracking-by-Detection Pipeline (Based on FUS3D [4])</h3>
@@ -136,7 +136,7 @@
       </p>
 
       <p>
-        <strong>AED (Associate Everything Detected)</strong> <a href="annotated-bibliography.html#ref-5" target="_blank">[5]</a> advances this by enabling tracking of objects even when their label is unknown. This is particularly useful for cluttered homes where the user might say, "Where's that blue pen I was using?" without explicitly labeling it ahead of time.
+        <strong>AED (Associate Everything Detected)</strong> <a href="annotated-bibliography.html#ref-5">[5]</a> advances this by enabling tracking of objects even when their label is unknown. This is particularly useful for cluttered homes where the user might say, "Where's that blue pen I was using?" without explicitly labeling it ahead of time.
       </p>
 
       <h2>Mobile Deployment Constraints</h2>
@@ -151,7 +151,7 @@
       </ul>
 
       <p>
-        These trade-offs must be carefully considered. In <a href="annotated-bibliography.html#ref-3" target="_blank">[3]</a>, hybrid inference was used to offload complex planning to the cloud while keeping vision on-device. This hybrid architecture balances real-time UX with computation-intensive tasks.
+        These trade-offs must be carefully considered. In <a href="annotated-bibliography.html#ref-3">[3]</a>, hybrid inference was used to offload complex planning to the cloud while keeping vision on-device. This hybrid architecture balances real-time UX with computation-intensive tasks.
       </p>
 
       <p>
